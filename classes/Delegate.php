@@ -4,9 +4,10 @@ require_once "DatabaseConnection.php";
 class Delegate {
     protected $pdo = null;
     private $delegate_id;
+    private $name;
     private $email;
     private $password;
-    private $profile;
+    // private $profile;
     private $is_enabled;
     private $created_on;
     private $verification_code;
@@ -26,174 +27,164 @@ class Delegate {
         return $this->delegate_id;
     }
 
-    // ... finish the rest
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+   
+   
+    public function setIsEnabled(bool $is_enabled) {
+        $this->is_enabled = $is_enabled;
+    }
+
+    public function getIsEnabled() {
+        return $this->is_enabled;
+    }
+    
+    public function setCreatedOn($created_on) {
+        $this->created_on = $created_on;
+    }
+    
+    public function getCreatedOn() {
+        return $this->created_on;
+    }
+    
+    public function setIsLoggedIn(bool $is_logged_in) {
+        $this->is_logged_in = $is_logged_in;
+    }
+    
+    public function getIsLoggedIn() {
+        return $this->is_logged_in;
+    }
+   
+    
 
     public function getDelegateByEmail() {
+		$sql = "SELECT * FROM delegates WHERE email = :email";
+		$stmt = $this->pdo->prepare($sql);
+		$status = $stmt->execute(['email' => $this->email]);
+		$delegate = $stmt->fetch();
+
+		if($status) {
+  			return $delegate;
+		}
+		else {
+			return null;
+		}
 
     }
 
     public function addDelegate() {
+        $sql = "INSERT INTO delegates (name, email, password, is_enabled, created_on)
+			VALUES (:name, :email, :password, :is_enabled, :created_on)";
+		$stmt = $this->pdo->prepare($sql);
+		$status = $stmt->execute(
+			[
+				'name' => $this->name,
+				'email' => $this->email,
+				'password' => $this->password,
+				'is_enabled' => $this->is_enabled,
+				'created_on' => $this->created_on
+			]);
 
+		return $status;
     }
 
-    public function isValidEmailVerificationCode() {
-
+    public function isEmailVerificationCodeValid() {
+       // check if user_verification code matches one in the database exist already
+       // use COUNT(*), and see if it's greater than zero 
     }
 
     public function enableDelegateAccount() {
+        $sql = "UPDATE delegates SET is_enabled = :is_enabled WHERE verification_code = :verification_code";
+        $stmt = $this->pdo->prepare($sql);
+        $status = $stmt->execute(
+            [
+                'is_enabled' => $this->is_enabled,
+                'verification_code' => $this->verification_code
+            ]);
 
+        return $status;
     }
 
     public function updateLoginStatus() {
+        $sql = "UPDATE delegates SET is_logged_in = :is_logged_in WHERE delegate_id = :delegate_id";
+        $stmt = $this->pdo->prepare($sql);
+        $status = $stmt->execute(
+            [
+                'is_logged_in' => $this->is_logged_in,
+                'delegate_id' => $this->delegate_id
+            ]);
 
+        return $status;
     }
 
     public function getDelegateById() {
+        $sql = "SELECT * FROM delegates WHERE delegate_id = :delegate_id";
+		$stmt = $this->pdo->prepare($sql);
+		$status = $stmt->execute(['delegate_id' => $this->delegate_id]);
+		$delegate = $stmt->fetch();
 
-    }
-
-    public function updateDelegate() {
-
-    }
-
-    public function getDelegate() {
-
-    }
-}
-?>
-
-class SponsorAccountReader
-{
-		protected $pdo = null;
-		private $username;
-		//private $password;
-		private $sponsor_id;
-		private $sponsor_name;
-        private $contribution_type;
-        private $advisor1_name;
-        private $advisor1_email;
-        private $advisor1_phone;
-        private $advisor2_name;
-        private $advisor2_email;
-        private $advisor2_phone;
-        private $advisor3_name;
-        private $advisor3_email;
-        private $advisor3_phone;
-        private $time_created;
-
-	
-
-    public function getSponsorDetails(): bool
-    {
-        $sql =
-            "SELECT
-                username,
-                sponsor_name,
-                contribution_type,
-                advisor1_name,
-                advisor1_email,
-                advisor1_phone,
-                advisor2_name,
-                advisor2_email,
-                advisor2_phone,
-                advisor3_name,
-                advisor3_email,
-                advisor3_phone,
-                time_created
-            FROM
-                sponsors
-            WHERE
-                sponsor_id = :sponsor_id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['sponsor_id' => $this->sponsor_id]);
-        $sponsor = $stmt->fetch();
-
-        if ($sponsor)
+        if($status) {
+            return $delegate;
+        }
+        else
         {
-            $this->username = $sponsor["username"];
-            $this->sponsor_name = $sponsor["sponsor_name"];
-            $this->contribution_type = $sponsor["contribution_type"];
-            $this->advisor1_name = $sponsor["advisor1_name"];
-            $this->advisor1_email = $sponsor["advisor1_email"];
-            $this->advisor1_phone = $sponsor["advisor1_phone"];
-            $this->advisor2_name = $sponsor["advisor2_name"];
-            $this->advisor2_email = $sponsor["advisor2_email"];
-            $this->advisor2_phone = $sponsor["advisor2_phone"];
-            $this->advisor3_name = $sponsor["advisor3_name"];
-            $this->advisor3_email = $sponsor["advisor3_email"];
-            $this->advisor3_phone = $sponsor["advisor3_phone"];
-            $this->time_created = $sponsor["time_created"];
-
-            return true;
-        } else {
-            return false;
+            return null;
         }
     }
 
-    public function getUsername(): string
-    {
-        return $this->username;
+    public function updateDelegate() {
+        $sql = 
+            "UPDATE delegates 
+            SET name = :name,
+                email = :email,
+                password = :password
+            WHERE delegate_id = :delegate_id";
+        $stmt = $this->pdo->prepare($sql);
+        $status = $stmt->execute(
+            [
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => $this->password,
+                'delegate_id' => $this->delegate_id
+            ]);
+
+        return $status;
     }
 
-    public function getSponsorName(): string
-    {
-        return $this->sponsor_name;
-    }
+    public function getAllDelegates() {
+        $sql = "SELECT * FROM delegates";
+		$stmt = $this->pdo->prepare($sql);
+		$status = $stmt->execute();
+		$delegates = $stmt->fetchAll();
 
-    public function getContributionType(): string
-    {
-        return $this->contribution_type;
-    }
-
-    public function getAdvisor1Name(): string
-    {
-        return $this->advisor1_name;
-    }
-
-    public function getAdvisor1Email(): string
-    {
-        return $this->advisor1_email;
-    }
-
-    public function getAdvisor1Phone(): ?string
-    {
-        return $this->advisor1_phone;
-    }
-
-    public function getAdvisor2Name(): ?string
-    {
-        return $this->advisor2_name;
-    }
-
-    public function getAdvisor2Email(): ?string
-    {
-        return $this->advisor2_email;
-    }
-
-    public function getAdvisor2Phone(): ?string
-    {
-        return $this->advisor2_phone;
-    }
-
-    public function getAdvisor3Name(): ?string
-    {
-        return $this->advisor3_name;
-    }
-
-    public function getAdvisor3Email(): ?string
-    {
-        return $this->advisor3_email;
-    }
-
-    public function getAdvisor3Phone(): ?string
-    {
-        return $this->advisor3_phone;
-    }
-
-    public function getTimeCreated(): string
-    {
-        $timestamp = strtotime($this->time_created);
-        return date("F Y", $timestamp);
+        if($status) {
+            return $delegates;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
 ?>
