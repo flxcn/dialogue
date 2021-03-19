@@ -3,6 +3,7 @@ require_once "DatabaseConnection.php";
 
 class Message {
     protected $pdo = null;
+    private $message_id;
     private $delegate_id;
     private $name;
     private $email;
