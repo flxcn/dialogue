@@ -22,17 +22,17 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner">
-                <h3 class="masthead-brand"><b><i>LakeMUN</i></b></h3>
+                <h3 class="masthead-brand"><b><i>Dialogue</i></b></h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="moderators/login.php">For Moderators</a>
+                    <a class="nav-link" href="moderators/login.php">Moderators</a>
                     <a class="nav-link" href="contact.php">Contact</a>
                 </nav>
             </div>
         </header>
 
         <main role="main" class="inner cover">
-            <h1 class="cover-heading">Dialogue</h1>
+            <h1 class="cover-heading">Welcome!</h1>
             <p class="cover-description lead"><i><b>Dialogue</b></i> is an online messaging platform specifically designed for the virtual Model UN experience. Delegates can converse with others to find solutions and build consensus.</p>
             <p class="lead">
             <a href="delegate/login.php" class="btn btn-lg btn-secondary">Open session!</a>
