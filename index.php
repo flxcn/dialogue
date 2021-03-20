@@ -26,7 +26,7 @@
                 <h3 class="masthead-brand"><b><i>Dialogue</i></b></h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="moderators/login.php">Moderators</a>
+                    <a class="nav-link" href="moderators/sign-in.php">Moderators</a>
                     <a class="nav-link" href="contact.php">Contact</a>
                 </nav>
             </div>
@@ -36,7 +36,7 @@
             <h1 class="cover-heading">Welcome!</h1>
             <p class="cover-description lead"><i><b>Dialogue</b></i> is an online messaging platform specifically designed for the virtual Model UN experience. Delegates can converse with others to find solutions and build consensus.</p>
             <p class="lead">
-            <a href="delegate/login.php" class="btn btn-lg btn-secondary">Open session!</a>
+            <a href="delegate/sign-in.php" class="btn btn-lg btn-secondary">Open session!</a>
             </p>
         </main>
 
@@ -61,7 +61,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     -->
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
