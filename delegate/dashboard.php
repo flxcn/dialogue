@@ -4,13 +4,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>Delegate Dashboard</title>
+    <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <!-- <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <link rel="icon" href="../assets/images/icon.png">
+
     
     <!-- Custom styles for this template -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
@@ -38,7 +39,7 @@
     
     <div class="container">
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="../assets/images/icon.png" alt="" width="72" height="72">
+            <!-- <img class="d-block mx-auto mb-4" src="../assets/images/icon.png" alt="" width="72" height="72"> -->
             <h2>Delegate Dashboard</h2>
             <p class="lead"></p>
         </div>
@@ -56,7 +57,7 @@
                     <button class="delegate">
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div class="text-left">
-                            <h6 class="my-0">President Biden</h6>
+                            <h6 class="my-0">Joe Biden</h6>
                             <!-- <span class="badge badge-info">3</span> -->
                             <small class="text-success"><b>Online</b></small>
                         </div>
@@ -80,10 +81,10 @@
                     <!-- <li class="list-group-item d-flex lh-condensed"> -->
                         
                         <div class="text-left">
-                            <h6 class="my-0">Volodymyr</h6>
+                            <h6 class="my-0">Xi Jinping</h6>
                             <small class="text-muted">Offline</small>
                         </div>
-                        <span class="text-info text-right"><b>45&nbsp;unread</b></span>
+                        <span class="text-info text-right"><b>99+&nbsp;unread</b></span>
                     </li>
                     <!-- </a> -->
                     </button>
@@ -91,17 +92,46 @@
 
                 
             </div>
-
+            <!-- maybe do @media stuff with CSS in order to make the text easily readable on xs screens. So set text-right -->
             <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Messaging Panel</h4>
-                <form class="card p-2">
+                <h4 class="mb-3">Messages</h4>
+                <div class="card p-2" style="height:500px;">
+                    <div class="card-header border bg-white text-black"><b>To: Joe Biden</b></div>
+                    <div class="card-body overflow-auto">
+                        <div class="card col-sm-8 mb-3 float-left bg-light">
+                           <div class="card-body text-left">Hi! How are you doing?</div>
+                        </div>
+                        <div class="card col-sm-8 mb-3 float-right bg-primary">
+                           <div class="card-body text-left text-white">Good Joe, I'm doing swell.</div>
+                        </div>
+                        <div class="card col-sm-8 mb-3 float-left">
+                           <div class="card-body text-left">That's great, that's great... listen, do you think we could find a solution on trade policy?</div>
+                        </div>
+                        <div class="card col-sm-8 mb-3 float-right">
+                           <div class="card-body text-left">Listen, I'm not sure that's going to be possible... my country is closely aligned with North Korea.</div>
+                        </div>
+                        <div class="card col-sm-8 mb-3 float-left">
+                           <div class="card-body text-left">That's okay, champ. I understand. Have a good day then.</div>
+                        </div>
+                        <div class="card col-sm-8 mb-3 float-right">
+                           <div class="card-body text-left">Alright, thanks anyways. See ya</div>
+                        </div>
+                        <div class="card col-sm-8 mb-3 float-left">
+                           <div class="card-body text-left">See ya.</div>
+                        </div>
+                    </div>
+                    <form class="card p-1 footer">
                         <div class="input-group">
                         <textarea type="text" class="form-control" placeholder="Message"></textarea>
                         <div class="input-group-append">
                             <button class="btn btn-primary">Send!</button>
                         </div>
                         </div>
-                    </form> 
+                    </form>
+                    
+                    
+                </div>
+                    
 
                 <!-- <form class="needs-validation" novalidate="">
                     
@@ -255,5 +285,7 @@
 
     <!-- Custom js for this page -->
     <script src="../assets/js/register.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+
 </body>
 </html>
