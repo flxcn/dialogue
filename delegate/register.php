@@ -7,64 +7,65 @@ require_once "../classes/Delegate.php";
 $first_name = "";
 $last_name = "";
 $school = "";
-$committee = ""; // perhaps committee_id instead? would save some work
+$conference_id = 1;
+$committee_id = ""; 
 $representation = "";
 
 $username = "";
 $password = "";
 $confirm_password = "";
 
+$error = "";
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $obj = new Delegate();
 
-    // Set sponsor_name
-    $sponsor_name = trim($_POST["sponsor_name"]);
-    $sponsor_name_error = $obj->setDelegateName($sponsor_name);
+    // Set first_name
+    $first_name = trim($_POST["first_name"]);
+    $error .= $obj->setFirstName($first_name);
+
+    // Set last_name
+    $last_name = trim($_POST["last_name"]);
+    $error .= $obj->setLastName($last_name);
+
+    // Set school
+    $school = trim($_POST["school"]);
+    $error .= $obj->setSchool($school);
+
+    // Set conference_id
+    // $conference_id = trim($_POST["conference_id"]);
+    // $error .= $obj->setConferenceId($conference_id);
+
+    // Set committee_id
+    $committee_id = trim($_POST["committee_id"]);
+    $error .= $obj->setCommitteeId($committee_id);
+
+    // Set representation
+    $representation = trim($_POST["representation"]);
+    $error .= $obj->setRepresentation($representation);
 
     // Set username
     $username = trim($_POST["username"]);
-    $username_error = $obj->setUsername($username);
+    $error .= $obj->setUsername($username);
 
     // Set password
     $password = trim($_POST["password"]);
-    $password_error = $obj->setPassword($password);
+    $error .= $obj->setPassword($password);
 
     // Set confirm_password
     $confirm_password = trim($_POST["confirm_password"]);
-    $confirm_password_error = $obj->setConfirmPassword($confirm_password);
+    $error .= $obj->setConfirmPassword($confirm_password);
 
-    // Set contribution_type
-    $contribution_type = trim($_POST["contribution_type"]);
-    $contribution_type_error = $obj->setContributionType($contribution_type);
-
-    // Set advisor1 information
-    $advisor1_name = trim($_POST["advisor1_name"]);
-    $advisor1_email = trim($_POST["advisor1_email"]);
-    $advisor1_phone = trim($_POST["advisor1_phone"]);
-    $obj->addAdvisor($advisor1_name, $advisor1_email, $advisor1_phone);
-
-    // Set advisor2 information
-    $advisor2_name = trim($_POST["advisor2_name"]);
-    $advisor2_email = trim($_POST["advisor2_email"]);
-    $advisor2_phone = trim($_POST["advisor2_phone"]);
-    $obj->addAdvisor($advisor2_name, $advisor2_email, $advisor2_phone);
-
-  // Set advisor3 information
-  $advisor3_name = trim($_POST["advisor3_name"]);
-  $advisor3_email = trim($_POST["advisor3_email"]);
-  $advisor3_phone = trim($_POST["advisor3_phone"]);
-  $obj->addAdvisor($advisor3_name, $advisor3_email, $advisor3_phone);
-
-  if(empty($username_error) && empty($password_error) && empty($confirm_password_error) && empty($contribution_type_error) && empty($sponsor_name_error)  && empty($advisor1_name_error) && empty($advisor1_email_error) && empty($advisor1_phone_error))
-  {
-    if($obj->addDelegate()) {
-      header("location: login.php");
+    if(empty($error))
+    {
+        if($obj->addDelegate()) {
+        header("location: sign-in.php");
+        }
+        else {
+            echo "Something went wrong. Please try again later.";
+        }
     }
-    else {
-      echo "Something went wrong. Please try again later.";
-    }
-  }
 }
 ?>
 
@@ -95,6 +96,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <h2>Delegate Registration</h2>
             <p class="lead">Fill out this form to create your <i><b>Dialogue</b></i> account.</p>
         </div>
+
+        <p class="text-danger text-center"><?php echo $error; ?></p>
 
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center order-md-1">
@@ -130,13 +133,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
 
                     <div class="mb-3">
-                        <label for="committee">Committee</label>
-                        <select class="custom-select d-block w-100" id="committee" required="">
+                        <label for="conference_id">Conference</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="LakeMUN" id="conference_id" name="conference_id" readonly>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="committee_id">Committee</label>
+                        <select class="custom-select d-block w-100" id="committee_id" name="committee_id" required="">
                             <option value="">Choose...</option>
-                            <option>ITU</option>
-                            <option>UNICEF</option>
-                            <option>Crisis</option>
-                            <option>ECOSOC (MiddleMUN)</option> 
+                            <option value="1">ITU</option>
+                            <option value="2">UNICEF</option>
+                            <option value="3">Crisis</option>
+                            <option value="4">ECOSOC (MiddleMUN)</option> 
                         </select>
                         <div class="invalid-feedback">
                         Please select a committee.
@@ -158,8 +168,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <h4 class="mb-3">Sign-in details</h4>
 
                     <div class="mb-3">
-                        <label for="password">Email (Username)</label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com" required="">
+                        <label for="username">Email (Username)</label>
+                        <input type="email" class="form-control" id="username" name="username" placeholder="you@example.com" required="">
                         <div class="invalid-feedback">
                             Please enter a valid email address for your username.
                         </div>
