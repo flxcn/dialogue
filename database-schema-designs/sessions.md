@@ -8,4 +8,6 @@ delegate_id     | primary int(11) NOT NULL
 last_active_on  | timestamp, default: CURRENT_TIMESTAMP
     <!-- the most recent timestamp the delegate was active (dashboard browser session was open), used for determining Offline vs Online status -->
 
+<!-- is_typing  | whether a delegate is currently typing -->
+<!-- Not necessary at this time, it will not be included. -->
 
