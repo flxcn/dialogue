@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !== true){
+    header("location: sign-in.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,31 +33,36 @@
         outline:none;
         padding: 0px;
     }
-    li:hover {
-        background-color: #eee;
-    }
 
-    li:active {
+    /* hover and active need to be more specific. Not just li, but specifically the cards on the right hand side */
+    /* li:hover {
+        background-color: #eee;
+    } */
+
+    /* li:active {
         background-color: white;
         color:black;
-    }
+    } */
 
     </style>
 </head>
 
 <body class="bg-light">
+    <header>
+        <?php include "navbar.php"; ?>
+    </header>
     
     <div class="container">
-        <div class="py-5 text-center">
+        <div class="pt-4 text-center">
             <!-- <img class="d-block mx-auto mb-4" src="../assets/images/icon.png" alt="" width="72" height="72"> -->
             <h2>Delegate Dashboard</h2>
-            <p class="lead"></p>
+            <p class="lead">Welcome, <?php echo $_SESSION["representation"]; ?></p>
         </div>
 
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Committee Delegates</span>
+                    <span>Committee Delegates</span>
                     <span class="badge badge-secondary badge-pill">3</span> 
                     <!-- write a function to call the number of delegates, one time only -->
                     <!-- order the list of delegates by putting the active ones first -->
@@ -94,7 +109,7 @@
             </div>
             <!-- maybe do @media stuff with CSS in order to make the text easily readable on xs screens. So set text-right -->
             <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Messages</h4>
+                <h4 class="mb-2">Messages</h4>
                 <div class="card p-2" style="height:500px;">
                     <div class="card-header border bg-white text-black"><b>To: Joe Biden</b></div>
                     <div class="card-body overflow-auto">
