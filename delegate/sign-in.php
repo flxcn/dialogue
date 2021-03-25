@@ -1,3 +1,69 @@
+<?php
+
+// Initialize the session
+session_start();
+
+// Check if the user is already logged in, if yes then redirect him to dashboard
+if(isset($_SESSION["delegate_signed_in"]) && $_SESSION["delegate_signed_in"] === true){
+    header("location: dashboard.php");
+    exit;
+}
+
+// Include config file
+require_once "../classes/Delegate.php";
+require_once "../classes/Session.php";
+
+// Define variables and initialize with empty values
+$username = "";
+$password = "";
+$username_error = "";
+$password_error = "";
+$error = "";
+
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Instatiate SponsorLogin object
+    $delegateObj = new Delegate();
+    
+    // Set username
+    $username = trim($_POST["username"]);
+    $username_error = $delegateObj->setUsernameForSignIn($username);
+
+    // Set password
+    $password = trim($_POST["password"]);
+    $password_error = $delegateObj->setPassword($password);
+
+    if(empty($username_error) && empty($password_error)){
+        if($delegateObj->signIn()) {
+            $sessionObj = new Session();
+            $sessionObj->setDelegateId($delegateObj->getDelegateId());
+            if($sessionObj->addSession()) {
+                // Start a new session
+                if(session_status() !== PHP_SESSION_ACTIVE) session_start();
+
+                // Set session variables
+                $_SESSION["delegate_signed_in"] = true;
+                $_SESSION["representation"] = $delegateObj->getRepresentation();
+                $_SESSION["delegate_id"] = $delegateObj->getDelegateId();
+                $_SESSION["committee_id"] = $delegateObj->getCommitteeId();
+
+                $_SESSION["session_id"] = $sessionObj->getSessionId();
+                // Redirect user to dashboard
+                header("location: dashboard.php");
+            }
+        }
+        else {
+            $password_error = "The password you entered was not valid.";
+            $error = $password_error;   
+        }
+    }
+    else {
+        $error = $username_error . "<br>" . $password_error;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +82,17 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
         <img class="mb-4" src="../assets/images/icon.png" alt="" width="72" height="72">
         
         <h1 class="h3 mb-3 font-weight-normal">Delegate Sign-in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <!-- <p></p> -->
+        <label for="username" class="sr-only">Username</label>
+        <input type="email" id="username" name="username" class="form-control" value="<?php echo $username; ?>" placeholder="Email address" required="" autofocus="">
+        <div class="text-danger invalid-feedback"><?php echo $username_error; ?></div>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+        <div class="text-danger invalid-feedback"><?php echo $password_error; ?></div>
+        <p class="text-danger"><?php echo $error; ?></p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; Felix Chen 2021</p>
     </form>
