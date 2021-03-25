@@ -2,6 +2,11 @@
 
 session_start();
 
+if(isset($_SESSION["delegate_signed_in"]) && $_SESSION["delegate_signed_in"] === true){
+    header("location: dashboard.php");
+    exit;
+}
+
 require_once "../classes/Delegate.php";
 
 $first_name = "";
