@@ -100,8 +100,14 @@ class Delegate {
         return $this->username;
     }
 
-    public function setPassword($password) {
-        $this->password = $password;
+    public function setPassword(string $password): string {
+        if(empty($password)) {
+            return "Please enter a password.";
+        }
+        else {
+            $this->password = $password;
+            return "";
+        }
     }
 
     public function getPassword() {
@@ -166,6 +172,49 @@ class Delegate {
 			]);
 
 		return $status;
+    }
+
+    // SIGN-IN METHODS
+
+    // Set username
+    public function setUsernameForSignIn(string $username): string {
+        if(empty($username)) {
+            return "Please enter your email address.";
+        }
+		if($this->checkUsernameExists(strtolower($username))) {
+            $this->username = strtolower($username);
+            return "";
+		}
+        else
+        {
+            return "No account found with that email.";
+        }
+    }
+
+    // Check username exists
+    private function checkUsernameExists($username): bool {
+        $stmt = $this->pdo->prepare("SELECT 1 FROM delegates WHERE username = :username");
+        $stmt->execute(['username' => $username]);
+        return (bool)$stmt->fetch();
+    }
+
+    // sign-in with username and password
+    public function signIn(): bool
+    {
+        $sql = "SELECT delegate_id, representation, committee_id, username, password FROM delegates WHERE username = :username";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['username' => $this->username]);
+        $delegate = $stmt->fetch();
+
+        if ($delegate && password_verify($this->password, $delegate['password']))
+        {
+            $this->delegate_id = $delegate["delegate_id"];
+            $this->representation = $delegate["representation"];
+            $this->committee_id = $delegate["committee_id"];
+            return true;
+        } else {
+        return false;
+        }
     }
 
     // Get Delegate by their email address (username)
