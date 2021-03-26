@@ -8,6 +8,12 @@
 
 - Write Profile page
 
+- Decide which color scheme works best for messages box; grey or white boxes for the other person, blue for this person?
+
+- Add link to [register.php](/delegate/register.php) on the sign-in page, preferable under the sign in button
+
+- Consider switching out the logo, if necessary. 64px by 64px is current size
+
 # COMPLETED
 
 - Figure out POST AJAX JQuery
@@ -19,3 +25,5 @@
 - data: {var1_name: var1_name, var2_name: var2_name} is proper format for jQuery POST function param. Don't concatenate together a string like a URL
 
 - can define JS variables with PHP session data in the script on dashboard.php, which are then accessible in the dashboard.js jQuery file
+
+- make sure not to misspell 'committee' for it is easy to forget the second 't' when typing fast
