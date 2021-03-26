@@ -63,7 +63,7 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span>Committee Delegates</span>
-                    <span class="badge badge-secondary badge-pill">3</span> 
+                    <span class="badge badge-secondary badge-pill" id="committeeDelegatesCount"></span> 
                     <!-- write a function to call the number of delegates, one time only -->
                     <!-- order the list of delegates by putting the active ones first -->
                     <!-- need to keep in mind to find a way to disable a button after they've clicked it, so server isn't spammed with multiple SELECT queries -->
