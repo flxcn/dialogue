@@ -68,41 +68,8 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
                     <!-- order the list of delegates by putting the active ones first -->
                     <!-- need to keep in mind to find a way to disable a button after they've clicked it, so server isn't spammed with multiple SELECT queries -->
                 </h4>
-                <ul class="list-group mb-3">
-                    <button class="delegate">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div class="text-left">
-                            <h6 class="my-0">Joe Biden</h6>
-                            <!-- <span class="badge badge-info">3</span> -->
-                            <small class="text-success"><b>Online</b></small>
-                        </div>
-                        <span class="text-info"><b><!--8&nbsp;unread--></b></span>
-                    </li>
-                    </button>
-                    
-                    <button class="delegate">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div class="text-left">
-                            <h6 class="my-0">Angela Merkel</h6>
-                            <small class="text-muted">Offline</small>
-                        </div>
-                        <span class="text-info text-right"><b>8&nbsp;unread</b></span>
-                    </li>
-                    </button>
-                    
-                   <!-- <a href=""> -->
-                    <button class="delegate">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <!-- <li class="list-group-item d-flex lh-condensed"> -->
-                        
-                        <div class="text-left">
-                            <h6 class="my-0">Xi Jinping</h6>
-                            <small class="text-muted">Offline</small>
-                        </div>
-                        <span class="text-info text-right"><b>99+&nbsp;unread</b></span>
-                    </li>
-                    <!-- </a> -->
-                    </button>
+                <ul class="list-group mb-3" id="committeeDelegates">
+                  <p>No delegates present in committee.</p> 
                 </ul>
 
                 
@@ -298,8 +265,14 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    <!-- Custom js for this page -->
-    <script src="../assets/js/register.js"></script>
+    <!-- Custom JS for this page -->
+    <!-- Define JS variables to hold PHP session variables -->
+    <script type="text/javascript">
+        var delegate_id = <?php echo $_SESSION['delegate_id'];?>;
+        var committee_id = <?php echo $_SESSION['committee_id'];?>;
+    </script>
+
+    <!-- Script for JQuery Functions -->
     <script src="../assets/js/dashboard.js"></script>
 
 </body>
