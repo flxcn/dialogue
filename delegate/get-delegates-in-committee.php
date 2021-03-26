@@ -33,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Count number of unread messages from this other delegate
-            $unread_message_count = 5;
+            $unread_message_count = 5; // TODO: change this to dynamic once messages table is set up
             //$unread_message_count = $obj->countUnreadMessages($row['delegate_id'], $delegate_id);
 
             $delegates[] = array(
