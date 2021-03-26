@@ -71,9 +71,8 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
                 <ul class="list-group mb-3" id="committeeDelegates">
                   <p>No delegates present in committee.</p> 
                 </ul>
-
-                
             </div>
+
             <!-- maybe do @media stuff with CSS in order to make the text easily readable on xs screens. So set text-right -->
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-2">Messages</h4>
@@ -119,9 +118,9 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <p class="mb-1">© 2021 Felix Chen</p>
             <ul class="list-inline">
-            <li class="list-inline-item"><a href="https://getbootstrap.com/docs/4.6/examples/checkout/#">Privacy</a></li>
-            <li class="list-inline-item"><a href="https://getbootstrap.com/docs/4.6/examples/checkout/#">Terms</a></li>
-            <li class="list-inline-item"><a href="https://getbootstrap.com/docs/4.6/examples/checkout/#">Support</a></li>
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
             </ul>
         </footer>
     </div>
