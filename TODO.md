@@ -4,7 +4,7 @@
 
 - Make sure session is updating correctly; write jQuery function to constantly update last_active_on
 
-- Once messages are set up, uncomment line 36 on [get-delegates-in-commitee.php](/delegates/get-delegates-in-commitee.php)
+- Once messages are set up, uncomment line 36 on [get-delegates-in-committee.php](/delegate/get-delegates-in-committee.php)
 
 - Write Profile page
 
