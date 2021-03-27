@@ -16,6 +16,13 @@ class DelegateDashboard {
         return $last_active_on;
     }
 
+    public function updateLastActiveOn($session_id): string {
+        $sql = "UPDATE sessions SET last_active_on = NOW() WHERE session_id = :session_id";
+        $stmt = $this->pdo->prepare($sql);
+        $status = $stmt->execute(['session_id' => $session_id]);
+        return $status;
+    }
+
     public function getMessagesByConversation($this_delegate_id, $other_delegate_id) {
         $sql =
             "SELECT message_content 

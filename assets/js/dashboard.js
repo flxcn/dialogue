@@ -2,6 +2,11 @@ $(document).ready(function(){
 
     getDelegatesInCommittee(delegate_id, committee_id);
 
+    setInterval(function(){
+        updateLastActiveOn(session_id);
+        getDelegatesInCommittee(delegate_id, committee_id);
+    }, 5000);
+
     function getDelegatesInCommittee(delegate_id, committee_id)
     {
         $.ajax({
@@ -38,5 +43,14 @@ $(document).ready(function(){
         })
     }
 
-        
+    function updateLastActiveOn(session_id) {
+        $.ajax({
+			url:"update-last-active-on.php",
+            method: "POST",
+            data: {session_id: session_id},
+			success:function()
+			{
+			}
+		})
+    }
 }); 

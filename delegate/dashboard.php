@@ -136,7 +136,8 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
     <!-- Custom JS for this page -->
     <!-- Define JS variables to hold PHP session variables -->
     <script type="text/javascript">
-        var delegate_id = <?php echo $_SESSION['delegate_id'];?>;
+        var session_id   = <?php echo $_SESSION['session_id'];  ?>;
+        var delegate_id  = <?php echo $_SESSION['delegate_id']; ?>;
         var committee_id = <?php echo $_SESSION['committee_id'];?>;
     </script>
 
