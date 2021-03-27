@@ -19,7 +19,7 @@ $(document).ready(function(){
                 var html = '';
                 var count = Object.keys(data).length;
                 $.each(data, function(key, value){
-                    html += '<button class="delegate">';
+                    html += '<button class="delegate" id="'+ value.delegate_id + '" data-delegaterepresentation="'+ value.representation +'">';
                     html +=     '<li class="list-group-item d-flex justify-content-between lh-condensed">';
                     html +=         '<div class="text-left">';
                     html +=             '<h6 class="my-0">' + value.representation + '</h6>';
@@ -93,4 +93,20 @@ $(document).ready(function(){
             }) 
         }
     }
+
+    $(document).on('click', '.delegate', function(){
+		if(other_delegate_id == $(this).attr('id')) {
+            return;
+        }
+
+        other_delegate_id = $(this).attr('id');
+        
+        var other_delegate_representation = $(this).attr('data-delegaterepresentation')
+        $('#otherDelegateRepresentation').html(other_delegate_representation);
+        
+        //$(".delegate").removeClass("active");
+        //$("#" + other_delegate_id).addClass("active");
+        $("textarea#compositionArea").val("");
+
+        getMessagesByConversation(delegate_id, other_delegate_id);
 }); 
