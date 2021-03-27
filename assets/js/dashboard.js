@@ -5,6 +5,7 @@ $(document).ready(function(){
     setInterval(function(){
         updateLastActiveOn(session_id);
         getDelegatesInCommittee(delegate_id, committee_id);
+        getMessagesByConversation(delegate_id, other_delegate_id);
     }, 5000);
 
     function getDelegatesInCommittee(delegate_id, committee_id)
@@ -52,5 +53,44 @@ $(document).ready(function(){
 			{
 			}
 		})
+    }
+
+    function getMessagesByConversation(this_delegate_id, other_delegate_id) {
+        if(other_delegate_id === "") {
+            return;
+        }
+        else {
+            $.ajax({
+                url:"get-messages-by-conversation.php",
+                method:"POST",
+                data: {this_delegate_id: this_delegate_id, other_delegate_id: other_delegate_id},
+                success:function(data){
+                    var html = '';
+                    if(jQuery.isEmptyObject(data)) {
+                       html = '<p>No messages found.</p>';
+                    }
+                    else {
+                        //var count = Object.keys(data).length;
+                        $.each(data, function(key, value){
+                            if(value.sender_id = other_delegate_id) {
+                                html += '<div class="card col-sm-8 mb-3 float-left bg-light">';
+                                html +=     '<div class="card-body text-left">' + value.message_content + '</div>';
+                                html += '</div>';    
+                                
+                            } else {
+                                html += '<div class="card col-sm-8 mb-3 float-right bg-primary">';
+                                html +=     '<div class="card-body text-left text-white">' + value.message_content + '</div>';
+                                html += '</div>';
+                            }
+                        });
+                    }
+                    $('#messagesArea').html(html);
+                    //resetUnreadMessageCount(other_delegate_id);
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }     
+            }) 
+        }
     }
 }); 

@@ -77,29 +77,8 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-2">Messages</h4>
                 <div class="card p-2" style="height:500px;">
-                    <div class="card-header border bg-white text-black"><b>To: Joe Biden</b></div>
-                    <div class="card-body overflow-auto">
-                        <div class="card col-sm-8 mb-3 float-left bg-light">
-                           <div class="card-body text-left">Hi! How are you doing?</div>
-                        </div>
-                        <div class="card col-sm-8 mb-3 float-right bg-primary">
-                           <div class="card-body text-left text-white">Good Joe, I'm doing swell.</div>
-                        </div>
-                        <div class="card col-sm-8 mb-3 float-left">
-                           <div class="card-body text-left">That's great, that's great... listen, do you think we could find a solution on trade policy?</div>
-                        </div>
-                        <div class="card col-sm-8 mb-3 float-right">
-                           <div class="card-body text-left">Listen, I'm not sure that's going to be possible... my country is closely aligned with North Korea.</div>
-                        </div>
-                        <div class="card col-sm-8 mb-3 float-left">
-                           <div class="card-body text-left">That's okay, champ. I understand. Have a good day then.</div>
-                        </div>
-                        <div class="card col-sm-8 mb-3 float-right">
-                           <div class="card-body text-left">Alright, thanks anyways. See ya</div>
-                        </div>
-                        <div class="card col-sm-8 mb-3 float-left">
-                           <div class="card-body text-left">See ya.</div>
-                        </div>
+                    <div class="card-header border bg-white text-black"><b>To: </b><strong id="otherDelegateRepresentation">Joe Biden</strong></div>
+                    <div class="card-body overflow-auto" id="messagesArea">
                     </div>
                     <form class="card p-1 footer">
                         <div class="input-group">
@@ -139,6 +118,7 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
         var session_id   = <?php echo $_SESSION['session_id'];  ?>;
         var delegate_id  = <?php echo $_SESSION['delegate_id']; ?>;
         var committee_id = <?php echo $_SESSION['committee_id'];?>;
+        var other_delegate_id = '';
     </script>
 
     <!-- Script for JQuery Functions -->

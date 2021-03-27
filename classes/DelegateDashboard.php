@@ -25,36 +25,43 @@ class DelegateDashboard {
 
     public function getMessagesByConversation($this_delegate_id, $other_delegate_id) {
         $sql =
-            "SELECT message_content 
+            "SELECT sender_id, receiver_id, message_content 
             FROM    messages
-            WHERE   (sender_id = :this_delegate_id
-                    AND receiver_id = :other_delegate_id)
+            WHERE   (sender_id = :this_delegate_id_1
+                    AND receiver_id = :other_delegate_id_1)
                     OR 
-                    (sender_id = :other_delegate_id 
-                    AND receiver_id = :this_delegate_id)
+                    (sender_id = :other_delegate_id_2 
+                    AND receiver_id = :this_delegate_id_2)
             ORDER BY created_on DESC";
         
         $stmt = $this->pdo->prepare($sql);
+        // the suffix number is only there due to PDO's requirement of unique parameters
 		$status = $stmt->execute(
             [
-                'this_delegate_id' => $this_delegate_id,
-                'other_delegate_id' => $other_delegate_id
+                'this_delegate_id_1' => $this_delegate_id,
+                'other_delegate_id_1' => $other_delegate_id,
+                'this_delegate_id_2' => $this_delegate_id,
+                'other_delegate_id_2' => $other_delegate_id
             ]);
 		if(!$status) {
 			return null;
 		}
 		else {
-			$volunteers = array();
-			$volunteers[] = array("volunteer_name" => 'Select Name', "volunteer_id" => '');
-			foreach ($stmt as $row)
-			{
-				$full_name = $row['last_name'] . ", " . $row['first_name'];
-				$volunteers[] = array("volunteer_name" => $full_name, "volunteer_id" => $row['volunteer_id']);
-			}
-			$jsonVolunteers = json_encode($volunteers);
-			return $jsonVolunteers;
+			$messages = $stmt->fetchAll();
+            return $messages;
 		}
 
+    }
+
+    public function resetUnreadMessageCount($this_delegate_id, $other_delegate_id) {
+        $sql = "UPDATE messages SET is_read = true WHERE sender_id = :sender_id AND receiver_id = :receiver_id AND is_read = false";
+        $stmt = $this->pdo->prepare($sql);
+		$status = $stmt->execute(
+            [
+                'sender_id' => $other_delegate_id,
+                'receiver_id' => $this_delegate_id
+            ]);
+        return $status;
     }
 
     public function countUnreadMessages($sender_id, $receiver_id) {
