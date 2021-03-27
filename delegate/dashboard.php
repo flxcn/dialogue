@@ -82,9 +82,9 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
                     </div>
                     <form class="card p-1 footer">
                         <div class="input-group">
-                        <textarea type="text" class="form-control" placeholder="Message"></textarea>
+                        <textarea type="text" id="compositionArea" class="form-control" placeholder="Message"></textarea>
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Send!</button>
+                            <button type="button" class="btn btn-primary send-message">Send!</button>
                         </div>
                         </div>
                     </form>
