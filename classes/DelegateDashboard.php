@@ -115,39 +115,19 @@ class DelegateDashboard {
 		}
     }
 
-    public function getVolunteers(): ?string
-	{
-		$sql = 
-			"SELECT DISTINCT 
-				volunteers.volunteer_id AS volunteer_id, 
-				volunteers.last_name AS last_name, 
-				volunteers.first_name AS first_name
-			FROM 
-				volunteers
-				INNER JOIN 
-				affiliations 
-				ON affiliations.volunteer_id = volunteers.volunteer_id
-			WHERE 
-				affiliations.sponsor_id = :sponsor_id
-			ORDER BY 
-				volunteers.last_name 
-				ASC";
-		
-		$stmt = $this->pdo->prepare($sql);
-		$status = $stmt->execute(['sponsor_id' => $this->sponsor_id]);
-		if(!$status) {
-			return null;
-		}
-		else {
-			$volunteers = array();
-			$volunteers[] = array("volunteer_name" => 'Select Name', "volunteer_id" => '');
-			foreach ($stmt as $row)
-			{
-				$full_name = $row['last_name'] . ", " . $row['first_name'];
-				$volunteers[] = array("volunteer_name" => $full_name, "volunteer_id" => $row['volunteer_id']);
-			}
-			$jsonVolunteers = json_encode($volunteers);
-			return $jsonVolunteers;
-		}
-	}
+    public function addMessage($committee_id, $sender_id, $receiver_id, $message_content) {
+        $sql = "INSERT INTO messages (committee_id, sender_id, receiver_id, message_content)
+                VALUES (:committee_id, :sender_id, :receiver_id, :message_content)";
+        $stmt = $this->pdo->prepare($sql);
+        $status = $stmt->execute(
+            [
+                'committee_id' => $committee_id,
+                'sender_id' => $sender_id,
+                'receiver_id' => $receiver_id,
+                'message_content' => $message_content
+            ]
+        );
+        
+        return $status;
+    }
 }
