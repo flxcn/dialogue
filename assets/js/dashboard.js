@@ -109,4 +109,21 @@ $(document).ready(function(){
         $("textarea#compositionArea").val("");
 
         getMessagesByConversation(delegate_id, other_delegate_id);
+    $(document).on('click', '.send-message', function(){
+		var message_content = $('#compositionArea').val();
+		if(message_content != '')
+		{
+			$.ajax({
+				url:"add-message.php",
+				method:"POST",
+				data:{committee_id: committee_id, sender_id: delegate_id, receiver_id: other_delegate_id, message_content: message_content},
+				success:function(data)
+				{
+					$('#compositionArea').val('');
+					getMessagesByConversation(delegate_id, other_delegate_id);
+				}
+			})
+		}
+        updateScroll();
+	});
 }); 
