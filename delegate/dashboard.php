@@ -77,8 +77,8 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-2">Messages</h4>
                 <div class="card p-2" style="height:500px;">
+                    <div class="card-header border bg-white text-black"><b>To: </b><strong id="otherDelegateRepresentation">Joe Biden</strong></div>
                     <div class="card-body overflow-auto" id="messagesArea">
-                    <div class="card-header border bg-white text-black"><b>To: </b><strong id="otherDelegateRepresentation"></strong></div>
                     </div>
                     <form class="card p-1 footer">
                         <div class="input-group">
