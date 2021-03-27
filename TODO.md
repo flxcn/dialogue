@@ -56,6 +56,8 @@
 
 - First answer, important three statements to end the PHP AJAX handler file, to return data as JSON: https://stackoverflow.com/questions/7064391/php-returning-json-to-jquery-ajax-call
 
+- How to count the number of entries in a JSON https://stackoverflow.com/questions/36648714/how-can-i-count-of-responses-in-jquery-ajax-result
+
 ----------------------------------------------------------------
 ## Bootstrap, CSS
 
