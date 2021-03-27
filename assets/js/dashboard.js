@@ -72,7 +72,7 @@ $(document).ready(function(){
                     else {
                         //var count = Object.keys(data).length;
                         $.each(data, function(key, value){
-                            if(value.sender_id = other_delegate_id) {
+                            if(value.sender_id == other_delegate_id) {
                                 html += '<div class="card col-sm-8 mb-3 float-left bg-light">';
                                 html +=     '<div class="card-body text-left">' + value.message_content + '</div>';
                                 html += '</div>';    
