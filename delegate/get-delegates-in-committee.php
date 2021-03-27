@@ -24,17 +24,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach($result as $row) {
 
             // Establish whether the this other delegate in committee is online or offline
-            $current_timestamp = strtotime(date("Y-m-d H:i:s") . '- 15 second');
+            $current_timestamp = strtotime(date("Y-m-d H:i:s") . '- 10 second');
             $current_timestamp = date('Y-m-d H:i:s', $current_timestamp);
             $last_active_on = $obj->getLastActiveOnByDelegateId($row['delegate_id']);
+            // $activity_status = $current_timestamp;
             $activity_status = "Offline";
             if($last_active_on > $current_timestamp) {
                 $activity_status = "Online";
             }
 
             // Count number of unread messages from this other delegate
-            $unread_message_count = 5; // TODO: change this to dynamic once messages table is set up
-            //$unread_message_count = $obj->countUnreadMessages($row['delegate_id'], $delegate_id);
+            // $unread_message_count = 5; // TODO: change this to dynamic once messages table is set up
+            $unread_message_count = $obj->countUnreadMessages($row['delegate_id'], $delegate_id);
 
             $delegates[] = array(
                 "delegate_id" => $row['delegate_id'],
