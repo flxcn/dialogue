@@ -109,6 +109,8 @@ $(document).ready(function(){
         $("textarea#compositionArea").val("");
 
         getMessagesByConversation(delegate_id, other_delegate_id);
+	});
+
     $(document).on('click', '.send-message', function(){
 		var message_content = $('#compositionArea').val();
 		if(message_content != '')
