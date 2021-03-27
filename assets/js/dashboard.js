@@ -30,7 +30,7 @@ $(document).ready(function(){
                     }
                     html +=         '</div>';
                     if(value.unread_message_count > 0) {
-                        html +=     '<span class="text-info"><b>8&nbsp;unread</b></span>';
+                        html +=     '<span class="text-info"><b>' + value.unread_message_count + '&nbsp;unread</b></span>';
                     }
                     html +=     '</li>';
                     html += '</button>';
