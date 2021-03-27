@@ -32,7 +32,7 @@ class DelegateDashboard {
                     OR 
                     (sender_id = :other_delegate_id_2 
                     AND receiver_id = :this_delegate_id_2)
-            ORDER BY created_on DESC";
+            ORDER BY created_on ASC";
         
         $stmt = $this->pdo->prepare($sql);
         // the suffix number is only there due to PDO's requirement of unique parameters
