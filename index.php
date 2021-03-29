@@ -26,8 +26,9 @@
                 <h3 class="masthead-brand"><b><i>Dialogue</i></b></h3>
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="moderators/sign-in.php">Moderators</a>
-                    <a class="nav-link" href="contact.php">Contact</a>
+                    <a class="nav-link" href="moderator/sign-in.php">Moderators</a>
+                    <a class="nav-link" href="mailto:felix@volunteernexus.com">Contact</a>
+                    <!-- <a class="nav-link" href="contact.php">Contact</a> -->
                 </nav>
             </div>
         </header>
