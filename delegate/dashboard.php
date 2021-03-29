@@ -33,17 +33,6 @@ if(!isset($_SESSION["delegate_signed_in"]) || $_SESSION["delegate_signed_in"] !=
         outline:none;
         padding: 0px;
     }
-
-    /* hover and active need to be more specific. Not just li, but specifically the cards on the right hand side */
-    /* li:hover {
-        background-color: #eee;
-    } */
-
-    /* li:active {
-        background-color: white;
-        color:black;
-    } */
-
     </style>
 </head>
 
