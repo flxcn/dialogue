@@ -13,7 +13,6 @@ $(document).ready(function(){
         $.ajax({
             url:"get-delegates-in-committee.php",
             method:"POST",
-            //data: "delegate_id="+delegate_id+"&committee_id"+committee_id,
             data: {delegate_id: delegate_id, committee_id: committee_id},
             success:function(data){
                 var html = '';
@@ -126,6 +125,18 @@ $(document).ready(function(){
 				}
 			})
 		}
-        updateScroll();
+        // updateScroll();
 	});
+
+    // function updateScroll(){
+    //     //var element = document.getElementById("messagesArea");
+    //     //element.scrollTop = element.scrollHeight;
+
+    //     var out = document.getElementById("messagesArea");
+    //     // allow 1px inaccuracy by adding 1
+    //     var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
+
+    //     if(isScrolledToBottom)
+    //         out.scrollTop = out.scrollHeight - out.clientHeight;
+    // }
 }); 
