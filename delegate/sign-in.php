@@ -94,6 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="text-danger invalid-feedback"><?php echo $password_error; ?></div>
         <p class="text-danger"><?php echo $error; ?></p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-1">Don't have an account yet? <a href="register.php">Sign up.</a></p>
         <p class="mt-5 mb-3 text-muted">&copy; Felix Chen 2021</p>
     </form>
 </body>
