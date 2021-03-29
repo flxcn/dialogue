@@ -31,7 +31,8 @@ class DelegateDashboard {
                     AND receiver_id = :other_delegate_id_1)
                     OR 
                     (sender_id = :other_delegate_id_2 
-                    AND receiver_id = :this_delegate_id_2)
+                    AND receiver_id = :this_delegate_id_2
+                    AND is_verified = true)
             ORDER BY created_on ASC";
         
         $stmt = $this->pdo->prepare($sql);
