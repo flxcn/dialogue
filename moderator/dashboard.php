@@ -17,14 +17,9 @@ if(!isset($_SESSION["moderator_signed_in"]) || $_SESSION["moderator_signed_in"] 
     <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-    <!-- <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <link rel="icon" href="../assets/images/icon.png">
-
-    
-    <!-- Custom styles for this template -->
-    <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
 </head>
 
 <body class="bg-light">
@@ -34,7 +29,6 @@ if(!isset($_SESSION["moderator_signed_in"]) || $_SESSION["moderator_signed_in"] 
     
     <div class="container">
         <div class="pt-4 text-center">
-            <!-- <img class="d-block mx-auto mb-4" src="../assets/images/icon.png" alt="" width="72" height="72"> -->
             <h2>Moderator Dashboard</h2>
             <p class="lead">Welcome, <?php echo $_SESSION["first_name"]; ?></p>
         </div>
@@ -42,7 +36,6 @@ if(!isset($_SESSION["moderator_signed_in"]) || $_SESSION["moderator_signed_in"] 
         <hr>
 
         <div class="row">
-            <!-- maybe do @media stuff with CSS in order to make the text easily readable on xs screens. So set text-right -->
             <div class="col-md-12 order-md-1">
                 <h4 class="mb-2">Pending Messages</h4>
                 <div id="messagesArea">
@@ -61,7 +54,6 @@ if(!isset($_SESSION["moderator_signed_in"]) || $_SESSION["moderator_signed_in"] 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
     <!-- Custom JS for this page -->
@@ -73,6 +65,5 @@ if(!isset($_SESSION["moderator_signed_in"]) || $_SESSION["moderator_signed_in"] 
 
     <!-- Script for JQuery Functions -->
     <script src="../assets/js/moderator-dashboard.js"></script>
-
 </body>
 </html>
