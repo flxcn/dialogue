@@ -11,7 +11,6 @@ if(isset($_SESSION["moderator_signed_in"]) && $_SESSION["moderator_signed_in"] =
 
 // Include config file
 require_once "../classes/Moderator.php";
-// require_once "../classes/Session.php";
 
 // Define variables and initialize with empty values
 $username = "";
@@ -71,7 +70,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" href="../assets/images/icon.png">
 
     <!-- Bootstrap core CSS -->
-    <!-- <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
