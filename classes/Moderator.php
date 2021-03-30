@@ -126,14 +126,6 @@ class Moderator {
     public function getCreatedOn() {
         return $this->created_on;
     }
-    
-    // public function setIsLoggedIn(bool $is_logged_in) {
-    //     $this->is_logged_in = $is_logged_in;
-    // }
-    
-    // public function getIsLoggedIn() {
-    //     return $this->is_logged_in;
-    // }
    
     // Create a new delegate, used in delegate/register.php
     public function addModerator() {
