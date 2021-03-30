@@ -233,50 +233,6 @@ class Delegate {
 
     }
 
-    // public function isEmailVerificationCodeValid() {
-    //    // check if user_verification code matches one in the database exist already
-    //    // use COUNT(*), and see if it's greater than zero 
-    // }
-
-    // public function enableDelegateAccount() {
-    //     $sql = "UPDATE delegates SET is_enabled = :is_enabled WHERE verification_code = :verification_code";
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $status = $stmt->execute(
-    //         [
-    //             'is_enabled' => $this->is_enabled,
-    //             'verification_code' => $this->verification_code
-    //         ]);
-
-    //     return $status;
-    // }
-
-    // public function updateLoginStatus() {
-    //     $sql = "UPDATE delegates SET is_logged_in = :is_logged_in WHERE delegate_id = :delegate_id";
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $status = $stmt->execute(
-    //         [
-    //             'is_logged_in' => $this->is_logged_in,
-    //             'delegate_id' => $this->delegate_id
-    //         ]);
-
-    //     return $status;
-    // }
-
-    public function getDelegateById() {
-        $sql = "SELECT * FROM delegates WHERE delegate_id = :delegate_id";
-		$stmt = $this->pdo->prepare($sql);
-		$status = $stmt->execute(['delegate_id' => $this->delegate_id]);
-		$delegate = $stmt->fetch();
-
-        if($status) {
-            return $delegate;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
     public function updateDelegate() {
         $sql = 
             "UPDATE delegates 
@@ -294,21 +250,6 @@ class Delegate {
             ]);
 
         return $status;
-    }
-
-    public function getAllDelegates() {
-        $sql = "SELECT * FROM delegates";
-		$stmt = $this->pdo->prepare($sql);
-		$status = $stmt->execute();
-		$delegates = $stmt->fetchAll();
-
-        if($status) {
-            return $delegates;
-        }
-        else
-        {
-            return null;
-        }
     }
 }
 ?>
