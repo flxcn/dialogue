@@ -110,11 +110,6 @@ class Message {
 		return $status;
     }
 
-    public function isEmailVerificationCodeValid() {
-       // check if user_verification code matches one in the database exist already
-       // use COUNT(*), and see if it's greater than zero 
-    }
-
     public function enableDelegateAccount() {
         $sql = "UPDATE delegates SET is_enabled = :is_enabled WHERE verification_code = :verification_code";
         $stmt = $this->pdo->prepare($sql);
