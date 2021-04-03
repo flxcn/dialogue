@@ -63,7 +63,7 @@ class Moderator {
 
     public function setUsername(string $username): string
     {
-        $stmt = $this->pdo->prepare('SELECT count(*) FROM delegates WHERE username = :username');
+        $stmt = $this->pdo->prepare('SELECT count(*) FROM moderators WHERE username = :username');
         $stmt->execute(['username' => strtolower($username)]);
         $same_usernames = $stmt->fetchColumn();
         if($same_usernames > 0){
@@ -165,7 +165,7 @@ class Moderator {
 
     // Check username exists
     private function checkUsernameExists($username): bool {
-        $stmt = $this->pdo->prepare("SELECT 1 FROM delegates WHERE username = :username");
+        $stmt = $this->pdo->prepare("SELECT 1 FROM moderators WHERE username = :username");
         $stmt->execute(['username' => $username]);
         return (bool)$stmt->fetch();
     }
