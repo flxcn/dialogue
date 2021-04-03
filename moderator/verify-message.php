@@ -15,6 +15,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $message_id = $_POST["message_id"]; 
     $is_verified = $_POST["is_verified"];
+
+    if(strcmp($is_verified,'null') == 0) {
+        $is_verified = null;
+    }
     
     if($obj->updateIsVerified($message_id, $is_verified)) {
         exit;
