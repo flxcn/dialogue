@@ -30,6 +30,29 @@ class ModeratorDashboard {
         return $messages;
     }
 
+    public function getVerifiedMessages($committee_id) {
+        $sql = "SELECT  messages.message_id      AS message_id, 
+                        messages.message_content AS message_content, 
+                        messages.is_verified     AS is_verified,
+                        senders.representation   AS sender_representation, 
+                        receivers.representation AS receiver_representation,
+                        messages.created_on      AS created_on 
+                FROM    messages 
+                        INNER JOIN delegates AS senders 
+                                ON messages.sender_id = senders.delegate_id 
+                        INNER JOIN delegates AS receivers 
+                                ON messages.receiver_id = receivers.delegate_id 
+                WHERE   messages.committee_id = :committee_id 
+                        AND is_verified IS NOT NULL 
+                ORDER   BY created_on DESC 
+                LIMIT   4 ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['committee_id' => $committee_id]);
+        $messages = $stmt->fetchAll();
+        return $messages;
+    }
+
     public function updateIsVerified($message_id, $is_verified): string {
         $sql = "UPDATE messages SET is_verified = :is_verified WHERE message_id = :message_id";
         $stmt = $this->pdo->prepare($sql);
