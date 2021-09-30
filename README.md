@@ -1,5 +1,6 @@
 # Dialogue
 MUN chat application with middleman verification
+![Preview](images/dialogue-screenshot.png)
 
 ## Description
 Dialogue is a chat application suited for the Model UN conference environment. With the ongoing shift towards online conferences, the traditional format of in-person note-passing is no longer a suitable option.
